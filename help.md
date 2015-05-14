@@ -8,4 +8,4 @@ The application starts with default settings for the four inputs:
   * Number of Cylinders (4)
   * Transmission Type (Automatic)
   
-You can change the input values by moving the sliders or checking the radio bozes.  The model automatically updates its prediction and updates the graphs.
+You can change the input values by moving the sliders or checking the radio boxes.  The model automatically updates its prediction and updates the graphs.

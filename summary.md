@@ -8,7 +8,7 @@ The mtcars data was extracted from the 1974 Motor Trend US magazine, and compris
 
 The application updates the predictions each time an input control is changed.
 
-I have include charts to show the mtcars data for each of the 4 predictors plotted against mpg.  You can see where your input predictors lie on the mtcars data as you cange the data using the sliders and radio but inut controls.  I have include the code for the server and the ui below.  They are also provided in the git hub repository forund here: <https://github.com/pleap/DataProducts>.
+I have include charts to show the mtcars data for each of the 4 predictors plotted against mpg.  You can see where your input predictors lie on the mtcars data as you change the data using the sliders and radio button input controls.  I have include the code for the server and the ui below.  They are also provided in the git hub repository found here: <https://github.com/pleap/DataProducts>.
 
 
 **server.R code**
