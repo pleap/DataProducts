@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Products Presentation</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Data Products Presentation">
+  <meta name="author" content="Peter Leap">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Data Products Presentation</h1>
+    <h2>Dynamic prediction of mpg using mtcars data</h2>
+    <p>Peter Leap<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Project Overview</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Use the R data set <code>mtcars</code> to create a linear model for predicting miles per gallon based on 4 significant predictors in the data set:</p>
+
+<ul>
+<li>Vehicle weight</li>
+<li>Engine displacement</li>
+<li>Number of Cylinders</li>
+<li>Type of transmission </li>
+</ul></li>
+<li><p>Create a shiny application that shows the <code>mtcars</code> data and allows users to input values for the four predictors to generate a linear model prediction for mpg</p></li>
+<li><p>Display that prediction on each of the individual predictor graphs to help visualize the change in prediction based on change in predictor.</p></li>
+<li><p>Publish the Application to shinyapps.io  and this presentation to github/ghpages branch</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Application Overview</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Fit the <code>mtcars</code> data to a linear model and plot</li>
+<li>Use the shiny input data to compute the mpg prediction based on the linear model and plot the point as a blue triangle</li>
+</ul>
+
+<pre><code class="r">data(mtcars)
+fit &lt;- lm(mpg ~ disp + wt + factor(am) + factor(cyl), data = mtcars)
+input &lt;- data.frame(wt = 3.1, disp = 160, cyl = 4, am = 0)  #dummy input data
+df &lt;- data.frame(wt = input$wt, disp = input$disp, cyl = input$cyl, am = input$am)
+plot(mtcars$wt, mtcars$mpg, col = &quot;red&quot;, pch = 19, xlab = &quot;lbs/1000&quot;, ylab = &quot;MPG&quot;, 
+    main = &quot;Weight&quot;)
+points(input$wt, round(predict(fit, df, interval = &quot;prediction&quot;)[1], 2), col = &quot;blue&quot;, 
+    pch = 25, lwd = 6)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Data Display</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Here is sample input data <strong>[3.1, 160, 4, 0]</strong> used to predict mpg and plotted on the 4 predictor data.</p>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Summary</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Platform
+
+<ul>
+<li>Shiny allows a simple but elegant user interface to gather user input and display dynamic results in both text and graphical formats</li>
+<li>Slidify allows the creation of slides with charts and r code directly inline with the presentation e.g. dim(mtcars) =  32, 11</li>
+<li>shinyapp.io and github ghpages automate the hosting of the application and dynamic presentation with little coding from the data scientist</li>
+</ul></li>
+<li>Application
+
+<ul>
+<li>Uses dynamic data sets to create prediction models - in this example using <code>mtcars</code></li>
+<li>Ability to use dynamic models and other r code makes it easier to help readers visualize the results of the data analysis
+
+<ul>
+<li>i.e. The transmission type has little impact on the mpg holding other variables constant!</li>
+</ul></li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Project Overview'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Application Overview'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Data Display'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Summary'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
